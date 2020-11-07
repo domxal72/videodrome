@@ -1,0 +1,20 @@
+{
+  "name": "the_turn",
+  "version": "1.0.0",
+  "description": "It doesnt really matter if we turn to dust, turn n turn n turn we must",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon src/app.js",
+    "frontend": "cd frontend && npm start"
+  },
+  "author": "dom",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
