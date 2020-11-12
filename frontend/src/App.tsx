@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
+import Header from './parts/header';
 import { Flex, FlexOut } from './ui/general/flex';
-import Grid from './ui/grid/grid';
-import Main from './ui/main'
+import Main from './parts/main'
 
 function App() {
 
@@ -17,9 +17,12 @@ function App() {
 
   return (
     <Main>
-      <Grid />
-      <Flex width={150} height={300} bg='red' />
-      <FlexOut width={150} height={300} bg='red' />
+      <Header />
+      <Flex pt={100}>
+        <video style={{height: '400px', width: '600px'}} id="videoPlayer" controls autoPlay={false}>
+          <source src="http://localhost:5000/video" type="video/mp4" />
+        </video>
+      </Flex>
     </Main>
   );
 }

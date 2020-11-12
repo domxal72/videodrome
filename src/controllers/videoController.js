@@ -1,10 +1,8 @@
-const express = require('express')
-const router = express.Router()
 const fs = require('fs')
 const path = require('path')
 
-router.get('/', function(req, res) {
-  const videoPath = path.join(__dirname, '../../assets/videos/castle.mp4')
+const video_controller = (req, res) => {
+  const videoPath = path.join(__dirname, '../assets/videos/castle.mp4')
   const stat = fs.statSync(videoPath)
   const fileSize = stat.size
   const range = req.headers.range
@@ -35,6 +33,6 @@ router.get('/', function(req, res) {
     res.writeHead(200, head)
     fs.createReadStream(videoPath).pipe(res)
   }
-})
+}
 
-module.exports = router
+module.exports = video_controller

@@ -1,7 +1,8 @@
-const path = require('path')
 const express = require('express')
+const mongoose = require('mongoose')
 
-const videoController = require('./src/api/video/video-controller')
+const videoRoutes = require('./src/routes/videoRoutes')
+const authRoutes = require('./src/routes/authRoutes')
 
 app = express()
 
@@ -11,22 +12,32 @@ app.listen(PORT, () => {
   console.log('run sally run')
 })
 
-app.use('/api/video', videoController)
 
-// static files for react frontend build
-app.use(express.static(path.join(__dirname, '/frontend/build')))
+const dbName = 'videodrome_db'
+const userName = 'dom'
+const userPass = 'tetrev236'
+const dbURI = `mongodb+srv://${userName}:${userPass}@videodrome-cluster.j65vd.mongodb.net/${dbName}?retryWrites=true&w=majority`;
+mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true});
 
-// app.use(express.static(path.join(__dirname, '/src/templates/')))
 
 app.get('/', (req, res) => {
-
+  res.send('requesting backup')
 })
 
 app.get('/test', (req, res) => {
   res.send({crush: 'your enemies'})
 })
 
-app.get('/video', (req, res) => {
-  res.sendFile(path.join(__dirname, '/src/templates/video.html'))
-})
+app.use(express.json())
+app.use('/video', videoRoutes)
+app.use('/auth', authRoutes)
+
+// static files for react frontend build
+// app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+// middleware to load templates as static or  from file directly
+// app.use(express.static(path.join(__dirname, '/src/templates/')))
+// app.get('/video', (req, res) => {
+//   res.sendFile(path.join(__dirname, '/src/templates/video.html'))
+// })
 

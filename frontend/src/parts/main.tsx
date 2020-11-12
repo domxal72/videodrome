@@ -12,5 +12,5 @@ const mainStyle = {
   margin: '0 auto',
   display: 'block',
   width: '100%', 
-  maxWidth: '800px', 
+  maxWidth: '1000px', 
 }
