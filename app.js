@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cookieParser = require('cookie-parser')
 
 const videoRoutes = require('./src/routes/videoRoutes')
 const authRoutes = require('./src/routes/authRoutes')
@@ -13,6 +14,9 @@ app.listen(PORT, () => {
 })
 
 
+// Rid off deprecation warning
+mongoose.set('useCreateIndex', true);
+// DB connection
 const dbName = 'videodrome_db'
 const userName = 'dom'
 const userPass = 'tetrev236'
@@ -29,6 +33,7 @@ app.get('/test', (req, res) => {
 })
 
 app.use(express.json())
+app.use(cookieParser())
 app.use('/video', videoRoutes)
 app.use('/auth', authRoutes)
 
