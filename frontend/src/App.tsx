@@ -21,13 +21,27 @@ function App() {
     // });
 
     const formChange = (e) => {
-      console.log(form)
+      // console.log(form)
       setForm({...form, [e.target.name]: e.target.value })
     }
 
     const submitForm = (e) => {
       e.preventDefault()
       console.log(form)
+      fetch('/auth/signup', {
+        method: 'POST',
+        body: JSON.stringify(form),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data)
+          if (data.errors){
+            window.location.assign('/denied')
+          }
+        })
     }
 
   return (

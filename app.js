@@ -37,6 +37,10 @@ app.use(cookieParser())
 app.use('/video', videoRoutes)
 app.use('/auth', authRoutes)
 
+app.get('/denied', (req, res) => {
+  res.send({access: 'denied'})
+})
+
 // static files for react frontend build
 // app.use(express.static(path.join(__dirname, '/frontend/build')))
 
