@@ -17,10 +17,13 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Enter your password'],
     minlength: [6, 'Min password length is 6 chars'],
   },
-  created: {
-    type : Date, default: Date.now
-  }
-})
+  // created: {
+  //   type : Date, default: Date.now
+  // }
+},
+  // timestamps davam za schema objekt do config objektu, doda mi to datumy pro created a updated time
+  { timestamps: true, }
+)
 
 // use of mongoode hooks
 
@@ -44,6 +47,21 @@ userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
   next();
 })
+
+// Add Static method to login user
+userSchema.statics.login = async function(email, password){
+  // use this to refer user model
+  const user = await this.findOne({ email })
+  if (user) {
+    // auth returns boolean
+    const auth = await bcrypt.compare(password, user.password)
+    if (auth){
+      return user
+    }
+    throw Error('wrong password')
+  }
+  throw Error('wrong email')
+}
 
 // tady to co davam jakou string 'user' tak z toho DB automaticky udela users collection jako pomnozny
 const User = mongoose.model('user', userSchema)

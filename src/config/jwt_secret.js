@@ -1,0 +1,1 @@
+module.exports.secret = 'tohle je jwt secret'
