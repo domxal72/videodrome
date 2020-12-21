@@ -1,14 +1,24 @@
 import React from 'react'
+import { Button } from '../ui/general/button'
 
-export default function LogOut() {
+export default function LogOut({ logOutUser }) {
 
-  const logOut = () => {
-    fetch('/logout')
+  // Async/await based function
+  const logOut = async () => {
+    const response = await fetch('/auth/logout')
+    const data = await response.json()
+    console.log(data)
+    if (data.user) {
+      logOutUser()
+    }
+    if (data.errors){
+      console.log('error: ', data)
+    }
   }
 
   return (
-    <button onClick={logOut}>
+    <Button onClick={logOut}>
       Log out
-    </button>
+    </Button>
   )
 }

@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+
+import LogOut from '../parts/log-out'
 
 import { Flex } from '../ui/general/flex'
 import logoImg from '../assets/img/logo.png'
@@ -19,17 +22,25 @@ const Logo = styled(Flex)`
   background: black;
 `
 
-export default function Header() {
+export default function Header({ state, logOutUser }) {
   return (
     <HeaderWrapper>
       <Flex justifyContent='space-between' width='100%' alignItems='center'>
         <Logo>
           <img src={logoImg} width='100%' alt="logo" />
         </Logo>
-        <Flex>
-          <Button>Log in</Button>
-          <Button>Sing up</Button>
-        </Flex>
+        {state.isLoggedIn ? (
+          <Flex pr={20}>
+            <p>hello, {state.user ? state.user.email : ""}</p>
+            <LogOut logOutUser={logOutUser} />
+          </Flex>
+        ) : (
+          <Flex pr={20}>
+            <Link to='signup'>
+              <Button>Sign up</Button>
+            </Link>
+          </Flex>
+        )}
       </Flex>
     </HeaderWrapper>      
   )

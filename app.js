@@ -1,3 +1,5 @@
+const path = require('path')
+
 const express = require('express')
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
@@ -23,6 +25,15 @@ const userName = 'dom'
 const userPass = 'tetrev236'
 const dbURI = `mongodb+srv://${userName}:${userPass}@videodrome-cluster.j65vd.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true});
+
+// static files for react frontend build
+app.use(express.static(path.join(__dirname, '/frontend/build')))
+// to load files from multiple different directories, just use static method multiple times
+app.use(express.static(path.join(__dirname, '/src/assets/')))
+// app.use(express.static(path.join(__dirname, '/src/templates/')))
+// app.get('/video', (req, res) => {
+//   res.sendFile(path.join(__dirname, '/src/templates/video.html'))
+// })
 
 // Strasne zalezi v jakym poradi jsou ty middleware
 // Treba vsechny funkce, routy a dalsi middleware kde pouzivam cookieParser tak ten musi bejt pred nima
@@ -50,12 +61,4 @@ app.get('/denied', (req, res) => {
   res.send({access: 'denied'})
 })
 
-// static files for react frontend build
-// app.use(express.static(path.join(__dirname, '/frontend/build')))
-
-// middleware to load templates as static or  from file directly
-// app.use(express.static(path.join(__dirname, '/src/templates/')))
-// app.get('/video', (req, res) => {
-//   res.sendFile(path.join(__dirname, '/src/templates/video.html'))
-// })
 

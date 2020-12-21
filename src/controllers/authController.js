@@ -52,8 +52,9 @@ const signup_post = async (req, res) => {
       password
     })
     const token = createToken(user._id)
-    res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
-    res.status(201).json({ user: user._id })
+    // res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
+    res.cookie('jwt', token, {maxAge: maxAge * 1000})
+    res.status(201).json({ userID: user._id, email: user.email })
   } catch (err) {
     const errors = handleErrors(err)
     res.status(400).json({ errors })
@@ -67,8 +68,9 @@ const login_post = async (req, res) => {
   try {
     const user = await User.login(email, password)
     const token = createToken(user._id)
-    res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
-    res.status(200).json({user: user._id})
+    // res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
+    res.cookie('jwt', token, {httpOnly: false, maxAge: maxAge * 1000})
+    res.status(200).json({userID: user._id, email: user.email})
   } catch (err) {
     const errors = handleErrors(err)
     res.status(400).json({ errors })
@@ -78,8 +80,10 @@ const login_post = async (req, res) => {
 const logout_get = (req, res) => {
   // bacha kde pouzivam res a kde req s cookie
   res.cookie('jwt', '', { maxAge: 1 })
+  console.log('logged out cons')
 
-  res.redirect('/homepage')
+  // res.redirect('/homepage')
+  res.status(200).json({user: 'logged out'})
 }
 
 const login_get = (req, res) => {

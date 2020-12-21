@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
-export default function LogIn() {
+export default function LogIn({ logInUser }) {
+  
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -25,6 +26,9 @@ export default function LogIn() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
+        if (data.userID) {
+          logInUser(data)
+        }
         if (data.errors){
           console.log('error: ', data)
         }
@@ -33,11 +37,17 @@ export default function LogIn() {
 
   return (
     <form onSubmit={submitForm}>
-      <label htmlFor="email">email</label>
-      <input type="text" name="email" onChange={formChange} />
-      <label htmlFor="email">password</label>
-      <input type="password" name="password" onChange={formChange} />
-      <button>log in</button>
+      <div>
+        <label htmlFor="email">email: </label>
+        <input type="text" name="email" onChange={formChange} />
+      </div>
+      <div>
+        <label htmlFor="email">password: </label>
+        <input type="password" name="password" onChange={formChange} />
+      </div>
+      <div>
+        <button>log in</button>
+      </div>
     </form>
   )
 }

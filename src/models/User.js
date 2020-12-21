@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Enter your password'],
     minlength: [6, 'Min password length is 6 chars'],
   },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  }
   // created: {
   //   type : Date, default: Date.now
   // }

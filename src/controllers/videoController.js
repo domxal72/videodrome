@@ -35,4 +35,29 @@ const video_controller = (req, res) => {
   }
 }
 
-module.exports = video_controller
+const get_list = (req, res) => {
+  // for file upload, available packages: formidable, express-fileupload, multer
+  // for video upload, try: http://mongodb.github.io/node-mongodb-native/2.1/tutorials/gridfs/streaming/
+  // for both: https://froala.com/wysiwyg-editor/docs/server/nodejs/video-upload/
+  res.status(200).json(
+    [
+      {
+        _id: 1,
+        title: 'vid 1 from server',
+        description: 'vid 1 desc',
+        img: '/img/vid1.jpg'
+      },
+      {
+        _id: 2,
+        title: 'vid 2',
+        description: 'vid 2 desc',
+        img: '/img/vid2.jpg'
+      },
+    ],
+  )
+}
+
+module.exports = { 
+  video_controller,
+  get_list
+}
