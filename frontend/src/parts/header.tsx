@@ -41,6 +41,9 @@ export default function Header({ state, logOutUser }) {
             </Link>
           </Flex>
         )}
+        <Link to='videoupload'>
+          <Button>Upload video</Button>
+        </Link>
       </Flex>
     </HeaderWrapper>      
   )

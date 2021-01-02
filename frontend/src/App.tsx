@@ -13,6 +13,7 @@ import Main from './parts/main'
 import SignUp from './parts/sign-up';
 import Homepage from './screens/homepage';
 import Dashboard from './screens/dashboard';
+import VideoUpload from './screens/video-upload';
 
 function App() {
 
@@ -58,6 +59,9 @@ function App() {
             </Route>
             <Route exact path="/signup">
               <SignUp logInUser={logInUser} />
+            </Route>
+            <Route exact path="/videoupload">
+              <VideoUpload />
             </Route>
           </Switch>
         </Flex>
