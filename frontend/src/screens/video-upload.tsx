@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
+import axios from 'axios'
 import { Flex } from '../ui/general/flex'
+
+const ProgressBar = styled(Flex)`
+  transition: width 0.2s;
+`
 
 export default function VideoUpload() {
 
@@ -11,6 +17,8 @@ export default function VideoUpload() {
     videoTitle: '',
     videoDescription: '',
   })
+
+  const [uploadProgress, setUploadProgress] = useState({showProgress: false, percentage: 0})
 
   const videoThumbSelect = (e) => {
     setFile({ ...files, videoThumb: e.target.files[0] })
@@ -37,18 +45,28 @@ export default function VideoUpload() {
 
     console.log(data)
 
-    const response = await fetch('/video-upload', {
-      method: 'POST',
-
-      // WARNING: nedavat tam header jinak to nepude, more info: https://muffinman.io/blog/uploading-files-using-fetch-multipart-form-data/
-      // headers: {
-      //   'Content-Type': 'multipart/form-data'
-      //   // 'Content-Type': 'application/json'
-      // },
-      body: data,
+    axios({
+      method: 'post',
+      url: '/video/video-upload',
+      data: data,
+      onUploadProgress: progressEvent => {
+        const percentage = Math.floor((progressEvent.loaded / progressEvent.total) * 100)
+        setUploadProgress({ showProgress: true, percentage })
+      }
     })
 
-  console.log(response)
+    // const response = await fetch('/video/video-upload', {
+    //   method: 'POST',
+
+    //   // WARNING: nedavat tam header jinak to nepude, more info: https://muffinman.io/blog/uploading-files-using-fetch-multipart-form-data/
+    //   // headers: {
+    //   //   'Content-Type': 'multipart/form-data'
+    //   //   // 'Content-Type': 'application/json'
+    //   // },
+    //   body: data,
+    // })
+
+  // console.log(response)
   }
 
   return (
@@ -77,6 +95,11 @@ export default function VideoUpload() {
           <button type="submit">Upload file</button>
         </Flex>
       </form>
+      {uploadProgress.showProgress && (
+        <Flex width={300} height={50}>
+          <ProgressBar width={`${uploadProgress.percentage}%`} height='100%' bg='teal'></ProgressBar>
+        </Flex>
+      )}
     </div>
   )
 }

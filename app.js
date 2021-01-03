@@ -42,6 +42,9 @@ app.use(express.static(path.join(__dirname, '/src/assets/')))
 app.use(express.json())
 app.use(cookieParser())
 
+// file upload middleware
+app.use(fileUpload())
+
 app.get('*', checkUser) // check user on every request
 
 app.use('/video', videoRoutes)
@@ -61,40 +64,5 @@ app.get('/test', (req, res) => {
 
 app.get('/denied', (req, res) => {
   res.send({access: 'denied'})
-})
-
-// enable files upload
-app.use(fileUpload());
-
-// file upload
-//  TUTORIAL: https://www.youtube.com/watch?v=b6Oe2puTdMQ&ab_channel=TraversyMedia
-// fetch streams https://jakearchibald.com/2016/streams-ftw/
-// TODO: Progress bar - bud pouzit axios nebo zkusit to vyzkoumat nejak s fetch https://javascript.info/fetch-progress
-app.post('/video-upload', async (req, res) => {
-
-  if (req.files !== null){
-    const { videoTitle, videoDescription } = req.body
-    const { videoThumb, videoFile } = req.files
-
-    videoFile.mv( __dirname + '/src/assets/videos/' + videoFile.name )
-    videoThumb.mv( __dirname + '/src/assets/img/' + videoThumb.name )
-
-    // Staci dat Model.create() pro ulozeni do DB
-    const video = await Video.create({
-      title: videoTitle,
-      description: videoDescription,
-      img: '/img/' + videoThumb.name,
-      videoSrc: '/videos/' + videoFile.name,
-    })
-
-    console.log(req.files)
-    console.log(req.body)
-    res.send(' done')
-  } else {
-
-    res.status(500).send('fail')
-  }
-
-  // res.send(req.files)
 })
 

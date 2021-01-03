@@ -1,6 +1,10 @@
 const fs = require('fs')
 const path = require('path')
 const Video = require('../models/Video')
+const express = require('express')
+// const fileUpload = require('express-fileupload')
+
+// const app = express()
 
 const video_controller = (req, res) => {
   const videoPath = path.join(__dirname, '../assets/videos/castle.mp4')
@@ -45,25 +49,51 @@ const get_list = async (req, res) => {
   const videoList = await Video.find({})
 
   res.status(200).json(videoList)
-  // res.status(200).json(
-  //   [
-  //     {
-  //       _id: 1,
-  //       title: 'vid 1 from server',
-  //       description: 'vid 1 desc',
-  //       img: '/img/vid1.jpg'
-  //     },
-  //     {
-  //       _id: 2,
-  //       title: 'vid 2',
-  //       description: 'vid 2 desc',
-  //       img: '/img/vid2.jpg'
-  //     },
-  //   ],
-  // )
 }
+
+
+
+const video_upload = async (req, res) => {
+  // enable files upload
+  // file upload
+  //  TUTORIAL: https://www.youtube.com/watch?v=b6Oe2puTdMQ&ab_channel=TraversyMedia
+  // fetch streams https://jakearchibald.com/2016/streams-ftw/
+  // TODO: Progress bar - bud pouzit axios nebo zkusit to vyzkoumat nejak s fetch https://javascript.info/fetch-progress
+
+  // console.log(req.files)
+  // res.send(req.files)
+  // res.send('uploaded')
+
+  if (req.files !== null){
+    const { videoTitle, videoDescription } = req.body
+    const { videoThumb, videoFile } = req.files
+
+    await videoFile.mv(path.join(__dirname, '../assets/videos/', videoFile.name))
+    await videoThumb.mv(path.join(__dirname, '../assets/img/', videoThumb.name ))
+
+    // Staci dat Model.create() pro ulozeni do DB
+    await Video.create({
+      title: videoTitle,
+      description: videoDescription,
+      img: '/img/' + videoThumb.name,
+      videoSrc: '/videos/' + videoFile.name,
+    })
+
+    console.log(req.files)
+    console.log(req.body)
+    res.send(' done')
+  } else {
+
+    res.status(500).send('fail')
+  }
+
+  // res.send(req.files)
+}
+
+
 
 module.exports = { 
   video_controller,
-  get_list
+  get_list,
+  video_upload,
 }
