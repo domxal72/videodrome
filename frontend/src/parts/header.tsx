@@ -26,9 +26,11 @@ export default function Header({ state, logOutUser }) {
   return (
     <HeaderWrapper>
       <Flex justifyContent='space-between' width='100%' alignItems='center'>
-        <Logo>
-          <img src={logoImg} width='100%' alt="logo" />
-        </Logo>
+        <Link to='/'>
+          <Logo>
+            <img src={logoImg} width='100%' alt="logo" />
+          </Logo>
+        </Link>
         {state.isLoggedIn ? (
           <Flex pr={20}>
             <p>hello, {state.user ? state.user.email : ""}</p>

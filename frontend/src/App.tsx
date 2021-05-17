@@ -14,6 +14,7 @@ import SignUp from './parts/sign-up';
 import Homepage from './screens/homepage';
 import Dashboard from './screens/dashboard';
 import VideoUpload from './screens/video-upload';
+import Page404 from './screens/page-404';
 
 function App() {
 
@@ -46,7 +47,6 @@ function App() {
 
   return (
     <Router>
-      
       <Main>
         <Header state={state} logOutUser={logOutUser} />
         <Flex pt={100} flexDirection='column'>
@@ -62,6 +62,9 @@ function App() {
             </Route>
             <Route exact path="/videoupload">
               <VideoUpload />
+            </Route>
+            <Route path="/:path">
+              <Page404 />
             </Route>
           </Switch>
         </Flex>

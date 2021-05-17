@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Grid, FormControl, Button, Input, InputLabel } from '@material-ui/core';
 
 export default function LogIn({ logInUser }) {
   
@@ -37,17 +38,19 @@ export default function LogIn({ logInUser }) {
 
   return (
     <form onSubmit={submitForm}>
-      <div>
-        <label htmlFor="email">email: </label>
-        <input type="text" name="email" onChange={formChange} />
-      </div>
-      <div>
-        <label htmlFor="email">password: </label>
-        <input type="password" name="password" onChange={formChange} />
-      </div>
-      <div>
-        <button>log in</button>
-      </div>
+      <Grid container direction='column'>
+        <FormControl>
+          <InputLabel htmlFor="email">email: </InputLabel>
+          <Input type="text" name="email" onChange={formChange} />
+        </FormControl>
+        <FormControl>
+          <InputLabel htmlFor="email">password: </InputLabel>
+          <Input type="password" name="password" onChange={formChange} />
+        </FormControl>
+        <FormControl>
+          <Button type='submit' variant='contained' color='primary'>log in</Button>
+        </FormControl>
+      </Grid>
     </form>
   )
 }

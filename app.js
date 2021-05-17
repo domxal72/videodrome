@@ -5,14 +5,13 @@ const fileUpload = require('express-fileupload')
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 
+const { PORT } = require('./src/config/env')
 const videoRoutes = require('./src/routes/videoRoutes')
 const authRoutes = require('./src/routes/authRoutes')
 const { requireAuth, checkUser } = require('./src/middleware/authMW')
 const Video = require('./src/models/Video')
 
 app = express()
-
-const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
   console.log('run sally run')

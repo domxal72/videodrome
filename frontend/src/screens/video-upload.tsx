@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+import { FormControl, Input, InputLabel, Button } from '@material-ui/core';
 import { Flex } from '../ui/general/flex'
 
 const ProgressBar = styled(Flex)`
@@ -72,10 +73,45 @@ export default function VideoUpload() {
   return (
     <div>
       <form onSubmit={submitForm} id='videoForm' encType="multipart/form-data">
+      {/* <FormGroup onSubmit={submitForm} id='videoForm'> */}
         <Flex flexDirection='column'>
           {/* <input type="file" name="videoFile" id="videoFile" accept='video/mp4' onChange={fileSelect} multiple /> */}
-          <input type="text" name="videoTitle" id="videoTitle" onChange={inputChange} />
-          <input type="text" name="videoDescription" id="videoDescription" onChange={inputChange} />
+          <FormControl>
+            <InputLabel>Video Title</InputLabel>
+            <Input type="text" name="videoTitle" id="videoTitle" placeholder='Title' onChange={inputChange} />
+          </FormControl>
+          <FormControl>
+            <InputLabel>Video Description</InputLabel>
+            <Input type="text" name="videoDescription" id="videoDescription" placeholder='Description' onChange={inputChange} />
+          </FormControl>
+          {/* <Button
+            variant="contained"
+            component="label"
+          >
+            Choose video
+            <input
+              type="file"
+              name="videoFile"
+              id="videoFile"
+              accept="image/png, image/jpeg"
+              onChange={videoThumbSelect}
+              hidden
+            />
+          </Button>
+          <Button
+            variant="contained"
+            component="label"
+          >
+            Choose image
+            <input
+              type="file"
+              name="videoThumb"
+              id="videoThumb"
+              accept='video/mp4'
+              onChange={videoFileSelect}
+              hidden
+            />
+          </Button> */}
           <input
             type="file"
             name="videoFile"
@@ -92,7 +128,8 @@ export default function VideoUpload() {
           />
           {/* <input type="file" name="videoFile" id="videoFile" accept='image/jpeg' onChange={fileSelect} /> */}
           {/* <label htmlFor="videoFile">vyber</label> */}
-          <button type="submit">Upload file</button>
+          {/* <button type="submit">Upload file</button> */}
+          <Button type="submit" color='primary' variant='contained'>Upload file</Button>
         </Flex>
       </form>
       {uploadProgress.showProgress && (
