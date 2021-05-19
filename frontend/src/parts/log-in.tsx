@@ -1,5 +1,18 @@
 import React, { useState } from 'react'
-import { Grid, FormControl, Button, Input, InputLabel } from '@material-ui/core';
+import { Grid, FormControl, Button, Input, InputLabel, Box } from '@material-ui/core';
+import styled from 'styled-components';
+
+// const FormControlStyled = styled(FormControl)`
+//   margin-bottom: 1em;
+// `
+
+const FormControlStyled = ({ children, ...props }) => {
+  return (
+    <Box mb={3}>
+      <FormControl {...props}>{children}</FormControl>
+    </Box>
+  )
+}
 
 export default function LogIn({ logInUser }) {
   
@@ -39,7 +52,18 @@ export default function LogIn({ logInUser }) {
   return (
     <form onSubmit={submitForm}>
       <Grid container direction='column'>
-        <FormControl>
+        <FormControlStyled>
+          <InputLabel htmlFor="email">email: </InputLabel>
+          <Input type="text" name="email" onChange={formChange} />
+        </FormControlStyled>
+        <FormControlStyled>
+          <InputLabel htmlFor="email">password: </InputLabel>
+          <Input type="password" name="password" onChange={formChange} />
+        </FormControlStyled>
+        <FormControlStyled>
+          <Button type='submit' variant='contained' color='primary'>log in</Button>
+        </FormControlStyled>
+        {/* <FormControl>
           <InputLabel htmlFor="email">email: </InputLabel>
           <Input type="text" name="email" onChange={formChange} />
         </FormControl>
@@ -49,7 +73,7 @@ export default function LogIn({ logInUser }) {
         </FormControl>
         <FormControl>
           <Button type='submit' variant='contained' color='primary'>log in</Button>
-        </FormControl>
+        </FormControl> */}
       </Grid>
     </form>
   )

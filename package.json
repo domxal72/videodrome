@@ -25,6 +25,7 @@
     "express-fileupload": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.13",
+    "sharp": "^0.28.2",
     "validator": "^13.1.17"
   },
   "devDependencies": {

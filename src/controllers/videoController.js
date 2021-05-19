@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const Video = require('../models/Video')
 const express = require('express')
+const sharp = require('sharp')
 // const fileUpload = require('express-fileupload')
 
 // const app = express()
@@ -51,7 +52,27 @@ const get_list = async (req, res) => {
   res.status(200).json(videoList)
 }
 
+const get_single_video = async (req, res) => {
+  try {
+    const video = await Video.findById(req.params.id)
+    res.status(200).json(video)
+  } catch (error) {
+    res.status(404).send('single video not found')
+  }
+}
 
+const crop_test = async (req, res) => {
+  try {
+    const cropped = await sharp(path.join(__dirname, '../assets/img/', '20210507_112701.jpg' ))
+    .extract({ left: 0, top: 0, width: 50, height: 100 })
+    .toFile(path.join(__dirname, '../assets/img/', '20210507_1127012.jpg' ))
+    // console.log(path.join(__dirname, '../assets/img/', '20210507_112701.jpg' ))
+
+    res.status(200).send(path.join(__dirname, '../assets/img/', '20210507_112701.jpg' ))
+  } catch (error) {
+    res.status(500).send('crop shit not found')
+  }
+}
 
 const video_upload = async (req, res) => {
   // enable files upload
@@ -68,6 +89,9 @@ const video_upload = async (req, res) => {
     const { videoTitle, videoDescription } = req.body
     const { videoThumb, videoFile } = req.files
 
+    // const croppedImg = videoThumb
+    
+
     await videoFile.mv(path.join(__dirname, '../assets/videos/', videoFile.name))
     await videoThumb.mv(path.join(__dirname, '../assets/img/', videoThumb.name ))
 
@@ -79,7 +103,12 @@ const video_upload = async (req, res) => {
       videoSrc: '/videos/' + videoFile.name,
     })
 
+    const cropped = await sharp(path.join(__dirname, '../assets/img/', videoThumb.name ))
+      .extract({ left: 0, top: 0, width: 50, height: 100 })
+      .toFile(path.join(__dirname, '../assets/img/', videoThumb.name ))
+
     console.log(req.files)
+    console.log(videoThumb)
     console.log(req.body)
     res.send(' done')
   } else {
@@ -94,6 +123,8 @@ const video_upload = async (req, res) => {
 
 module.exports = { 
   video_controller,
+  get_single_video,
   get_list,
   video_upload,
+  crop_test,
 }

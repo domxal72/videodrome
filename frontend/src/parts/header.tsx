@@ -38,12 +38,12 @@ export default function Header({ state, logOutUser }) {
           </Flex>
         ) : (
           <Flex pr={20}>
-            <Link to='signup'>
+            <Link to='/signup'>
               <Button>Sign up</Button>
             </Link>
           </Flex>
         )}
-        <Link to='videoupload'>
+        <Link to='/videoupload'>
           <Button>Upload video</Button>
         </Link>
       </Flex>
