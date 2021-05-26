@@ -1,4 +1,5 @@
 import React from 'react'
+import { sizes } from '../ui/layout/sizes'
 
 export default function Main({children}) {
   return (
@@ -10,7 +11,7 @@ export default function Main({children}) {
 
 const mainStyle = {
   margin: '0 auto',
-  display: 'block',
+  display: 'flex',
   width: '100%', 
-  maxWidth: '1000px', 
+  maxWidth: sizes.pageWidth, 
 }

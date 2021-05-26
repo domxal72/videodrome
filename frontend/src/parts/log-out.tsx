@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '../ui/general/button'
+import { Button } from '@material-ui/core'
 
 export default function LogOut({ logOutUser }) {
 
@@ -17,7 +17,7 @@ export default function LogOut({ logOutUser }) {
   }
 
   return (
-    <Button onClick={logOut}>
+    <Button variant='contained' color='secondary' onClick={logOut}>
       Log out
     </Button>
   )

@@ -1,11 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const Video = require('../models/Video')
-const express = require('express')
 const sharp = require('sharp')
-// const fileUpload = require('express-fileupload')
-
-// const app = express()
 
 const video_controller = (req, res) => {
   const videoPath = path.join(__dirname, '../assets/videos/castle.mp4')
@@ -61,39 +57,31 @@ const get_single_video = async (req, res) => {
   }
 }
 
-const crop_test = async (req, res) => {
+const fetch_test = async (req, res) => {
   try {
-    const cropped = await sharp(path.join(__dirname, '../assets/img/', '20210507_112701.jpg' ))
-    .extract({ left: 0, top: 0, width: 50, height: 100 })
-    .toFile(path.join(__dirname, '../assets/img/', '20210507_1127012.jpg' ))
-    // console.log(path.join(__dirname, '../assets/img/', '20210507_112701.jpg' ))
-
-    res.status(200).send(path.join(__dirname, '../assets/img/', '20210507_112701.jpg' ))
+    
+    console.log('I am string')
+    res.status(200).send('I am string')
+    // res.status(200).send({obj: 'resp'})
   } catch (error) {
-    res.status(500).send('crop shit not found')
+    console.log('single video not found')
+    res.status(404).send('single video not found')
   }
 }
 
 const video_upload = async (req, res) => {
-  // enable files upload
-  // file upload
+  // enable files upload from middleware in app.js
   //  TUTORIAL: https://www.youtube.com/watch?v=b6Oe2puTdMQ&ab_channel=TraversyMedia
   // fetch streams https://jakearchibald.com/2016/streams-ftw/
   // TODO: Progress bar - bud pouzit axios nebo zkusit to vyzkoumat nejak s fetch https://javascript.info/fetch-progress
-
-  // console.log(req.files)
-  // res.send(req.files)
-  // res.send('uploaded')
 
   if (req.files !== null){
     const { videoTitle, videoDescription } = req.body
     const { videoThumb, videoFile } = req.files
 
-    // const croppedImg = videoThumb
-    
-
     await videoFile.mv(path.join(__dirname, '../assets/videos/', videoFile.name))
-    await videoThumb.mv(path.join(__dirname, '../assets/img/', videoThumb.name ))
+    // Move image to temporary location for resize
+    await videoThumb.mv(path.join(__dirname, '../assets/img/', 'temp' ))
 
     // Staci dat Model.create() pro ulozeni do DB
     await Video.create({
@@ -103,28 +91,24 @@ const video_upload = async (req, res) => {
       videoSrc: '/videos/' + videoFile.name,
     })
 
-    const cropped = await sharp(path.join(__dirname, '../assets/img/', videoThumb.name ))
-      .extract({ left: 0, top: 0, width: 50, height: 100 })
+    // Resize image from temporary and save it to named address
+    await sharp(path.join(__dirname, '../assets/img/', 'temp' ))
+      .resize({width: 500, height: 300})
       .toFile(path.join(__dirname, '../assets/img/', videoThumb.name ))
 
-    console.log(req.files)
-    console.log(videoThumb)
-    console.log(req.body)
-    res.send(' done')
-  } else {
+    // Remove temporary file 
+    fs.unlink(path.join(__dirname, '../assets/img/', 'temp' ), () => {console.log(`successfully deleted ${path.join(__dirname, '../assets/img/', 'temp' )}`);});
 
+    res.send('video uploaded successfully')
+  } else {
     res.status(500).send('fail')
   }
-
-  // res.send(req.files)
 }
-
-
 
 module.exports = { 
   video_controller,
   get_single_video,
   get_list,
   video_upload,
-  crop_test,
+  fetch_test,
 }

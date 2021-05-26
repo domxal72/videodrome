@@ -8,7 +8,7 @@ const ProgressBar = styled(Flex)`
   transition: width 0.2s;
 `
 
-export default function VideoUpload() {
+export default function VideoUpload({infoMsg, setInfoMsg}) {
 
   const [files, setFile] = useState({
     videoThumb: null,
@@ -35,6 +35,11 @@ export default function VideoUpload() {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
   }
 
+  const clearForm = () => {
+    setInputs({...inputs, videoTitle: '', videoDescription: '' })
+    setFile({ ...files, videoThumb: null, videoFile: null })
+  }
+
   const submitForm = async (e) => {
     e.preventDefault()
 
@@ -54,28 +59,16 @@ export default function VideoUpload() {
         const percentage = Math.floor((progressEvent.loaded / progressEvent.total) * 100)
         setUploadProgress({ showProgress: true, percentage })
       }
+    }).then( (response) => {
+      setInfoMsg(response.data)
     })
-
-    // const response = await fetch('/video/video-upload', {
-    //   method: 'POST',
-
-    //   // WARNING: nedavat tam header jinak to nepude, more info: https://muffinman.io/blog/uploading-files-using-fetch-multipart-form-data/
-    //   // headers: {
-    //   //   'Content-Type': 'multipart/form-data'
-    //   //   // 'Content-Type': 'application/json'
-    //   // },
-    //   body: data,
-    // })
-
-  // console.log(response)
+    clearForm()
   }
 
   return (
     <div>
       <form onSubmit={submitForm} id='videoForm' encType="multipart/form-data">
-      {/* <FormGroup onSubmit={submitForm} id='videoForm'> */}
         <Flex flexDirection='column'>
-          {/* <input type="file" name="videoFile" id="videoFile" accept='video/mp4' onChange={fileSelect} multiple /> */}
           <FormControl>
             <InputLabel>Video Title</InputLabel>
             <Input type="text" name="videoTitle" id="videoTitle" placeholder='Title' onChange={inputChange} />
@@ -135,7 +128,11 @@ export default function VideoUpload() {
       {uploadProgress.showProgress && (
         <Flex width={300} height={50}>
           <ProgressBar width={`${uploadProgress.percentage}%`} height='100%' bg='teal'></ProgressBar>
+          <div>{`${uploadProgress.percentage}%`}</div>
         </Flex>
+      )}
+      {infoMsg && (
+        <div>{infoMsg}</div>
       )}
     </div>
   )

@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom'
 import LogOut from '../parts/log-out'
 
 import { Flex } from '../ui/general/flex'
+import { sizes } from '../ui/layout/sizes'
 import logoImg from '../assets/img/logo.png'
-import { Button } from '../ui/general/button'
+import { Button } from '@material-ui/core'
+import Fetch from '../screens/Fetch'
 
 const HeaderWrapper = styled(Flex)`
   position: fixed;
   top: 0;
-  max-width: 1000px;
+  max-width: ${sizes.pageWidth};
   width: 100%;
   z-index: 100;
 `
@@ -31,21 +33,19 @@ export default function Header({ state, logOutUser }) {
             <img src={logoImg} width='100%' alt="logo" />
           </Logo>
         </Link>
+          <Fetch />
         {state.isLoggedIn ? (
-          <Flex pr={20}>
+          <Flex>
             <p>hello, {state.user ? state.user.email : ""}</p>
             <LogOut logOutUser={logOutUser} />
           </Flex>
         ) : (
-          <Flex pr={20}>
+          <Flex>
             <Link to='/signup'>
               <Button>Sign up</Button>
             </Link>
           </Flex>
         )}
-        <Link to='/videoupload'>
-          <Button>Upload video</Button>
-        </Link>
       </Flex>
     </HeaderWrapper>      
   )
