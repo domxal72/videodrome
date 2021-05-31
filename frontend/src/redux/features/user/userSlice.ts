@@ -23,7 +23,7 @@ export default function userReducer(state = initialState, action) {
     case 'user/changeName': {
       return {
         ...state,
-        name: action.payload
+        name: action.payload,
       }
     }
 

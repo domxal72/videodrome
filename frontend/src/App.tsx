@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Cookies from 'js-cookie';
 
-
+import { useSelector, useDispatch } from 'react-redux'
 import store from '../src/redux/store'
 
 import Header from './parts/header';
@@ -20,6 +20,10 @@ import VideoUpload from './screens/video-upload';
 import Page404 from './screens/page-404';
 import SingleVideo from './screens/single-video';
 import Sidebar from './parts/sidebar';
+// import { GlobalContext } from './contexts/global/GlobalContext';
+import GlobalState from './contexts/global/GlobalState';
+
+const selectVideos = state => state.videos
 
 function App() {
 
@@ -34,6 +38,7 @@ function App() {
   }
 
   const [state, setState] = useState(initialState)
+  // const dispatch = useDispatch()
 
   const logInUser = (user) => {
     setState({...state, isLoggedIn: true, user })
@@ -84,35 +89,48 @@ function App() {
   store.dispatch({ type: 'user/changeName', payload: 'Thulsa' })
   console.log('Initial state: ', store.getState())
 
+  // const videos = useSelector(selectVideos)
+  // useSelector(state => state)
+
+  // const addVideo = () => {
+  //   dispatch({ type: 'videos/videoAdded', payload: 'new video text' })
+  //   dispatch({ type: 'user/changeName', payload: 'ohoj' })
+  // }
+
   return (
-    <Router>
-      <Main>
-        <Header state={state} logOutUser={logOutUser} />
-        <Flex pt={100} flexDirection='column' flex={1}>
-          <Switch>
-            <Route exact path="/">
-              {!state.isLoggedIn ? <Redirect to="/home" /> : <Dashboard state={state} getVideoList={getVideoList} />}
-            </Route>
-            <Route exact path="/home">
-              <Homepage logInUser={logInUser} />
-            </Route>
-            <Route exact path="/signup">
-              <SignUp logInUser={logInUser} />
-            </Route>
-            <Route exact path="/videoupload">
-              <VideoUpload infoMsg={state.infoMsg} setInfoMsg={setInfoMsg} />
-            </Route>
-            <Route exact path="/video/:id">
-              <SingleVideo state={state} getSingleVideo={getSingleVideo} clearSingleVideo={clearSingleVideo} />
-            </Route>
-            <Route path="/:path">
-              <Page404 />
-            </Route>
-          </Switch>
-        </Flex>
-        <Sidebar />
-      </Main>
-    </Router>
+    // <GlobalContext.Provider value={{test: 'sada'}}>
+    <GlobalState>
+      <Router>
+        <Main>
+          <Header state={state} logOutUser={logOutUser} />
+          <Flex pt={100} flexDirection='column' flex={1}>
+            <Switch>
+              <Route exact path="/">
+                {!state.isLoggedIn ? <Redirect to="/home" /> : <Dashboard state={state} getVideoList={getVideoList} />}
+              </Route>
+              <Route exact path="/home">
+                <Homepage logInUser={logInUser} />
+              </Route>
+              <Route exact path="/signup">
+                <SignUp logInUser={logInUser} />
+              </Route>
+              <Route exact path="/videoupload">
+                <VideoUpload infoMsg={state.infoMsg} setInfoMsg={setInfoMsg} />
+              </Route>
+              <Route exact path="/video/:id">
+                <SingleVideo state={state} getSingleVideo={getSingleVideo} clearSingleVideo={clearSingleVideo} />
+              </Route>
+              <Route path="/:path">
+                <Page404 />
+              </Route>
+            </Switch>
+          </Flex>
+          <Sidebar />
+          {/* <button onClick={addVideo}>add video</button> */}
+        </Main>
+      </Router>
+    </GlobalState>
+    // </GlobalContext.Provider>
   );
 }
 
