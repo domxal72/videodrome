@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Flex } from '../ui/general/flex'
 import { ImgContainer } from '../ui/general/img-container';
 
-export default function Dashboard({ state, getVideoList }) {
+export default function Dashboard({ getVideoList }) {
 
   useEffect(() => {
     getVideoList()
@@ -13,7 +13,7 @@ export default function Dashboard({ state, getVideoList }) {
   return (
     <Flex flexDirection='column'>
       <Grid container direction='row' justify='flex-start' wrap='wrap'>
-        {state.videoList.map(({ _id, title, description, img }) => (
+        {/* {state.videoList.map(({ _id, title, description, img }) => (
           <Grid key={_id} sm={6} md={4} lg={3}>
             <Typography variant='subtitle1'>{title}</Typography>
             <Typography variant='subtitle2'>{description}</Typography>
@@ -21,11 +21,8 @@ export default function Dashboard({ state, getVideoList }) {
               <ImgContainer src={img} alt="alt img txt" />
             </Link>
           </Grid>
-        ))}
+        ))} */}
       </Grid>
-      <video style={{height: '400px', width: '600px'}} id="videoPlayer" controls autoPlay={false}>
-        <source src="http://localhost:5000/video" type="video/mp4" />
-      </video>
     </Flex>
   )
 }

@@ -1,20 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { GlobalContext } from '../contexts/global/GlobalState';
+import { clearForm } from '../utils/helpers'
 
-export default function SignUp({logInUser}) {
+export default function SignUp() {
+
+  const { logInUser, logOutUser, user } = useContext(GlobalContext)
 
   const [form, setForm] = useState({
     email: '',
     password: '',
     passwordRepeat: '',
   })
-  
+
+  const { email, password, passwordRepeat } = form
+
   const formChange = (e) => {
-    setForm({...form, [e.target.name]: e.target.value })
+    setForm({ ...form, [e.target.name]: e.target.value })
   }
 
   const submitForm = async (e) => {
     e.preventDefault()
-    if (form.password === form.passwordRepeat) {
+    if (password === passwordRepeat) {
       const res = await fetch('/auth/signup', {
         method: 'POST',
         body: JSON.stringify(form),
@@ -23,11 +29,10 @@ export default function SignUp({logInUser}) {
         },
       })
       const data = await res.json()
-      if (data.userID) {
-        logInUser(data)
-      }
-      if (data.errors){
-        window.location.assign('/denied')
+      logInUser(data)
+      clearForm(form, setForm)
+      if (data.errors) {
+        window.location.assign('/denied') // tohle asi taky vyhodit a nahradit kdyztak react routerem
         // window.location.assign('/homepage')
       }
     } else {
@@ -36,22 +41,24 @@ export default function SignUp({logInUser}) {
   }
 
   return (
-    <form onSubmit={submitForm}>
-      <div>
-        <label htmlFor="email">email: </label>
-        <input type="text" name="email" onChange={formChange} />
-      </div>
-      <div>
-        <label htmlFor="email">password: </label>
-        <input type="password" name="password" onChange={formChange} />
-      </div>
-      <div>
-        <label htmlFor="email">password repeat: </label>
-        <input type="password" name="passwordRepeat" onChange={formChange} />
-      </div>
-      <div>
-        <button>Sign up</button>
-      </div>
-    </form>
+    <div>
+      <form onSubmit={submitForm}>
+        <div>
+          <label htmlFor="email">email: </label>
+          <input type="text" name="email" value={email} onChange={formChange} />
+        </div>
+        <div>
+          <label htmlFor="email">password: </label>
+          <input type="password" name="password" value={password} onChange={formChange} />
+        </div>
+        <div>
+          <label htmlFor="email">password repeat: </label>
+          <input type="password" name="passwordRepeat" value={passwordRepeat} onChange={formChange} />
+        </div>
+        <div>
+          <button type='submit'>Sign up</button>
+        </div>
+      </form>
+    </div>
   )
 }

@@ -2,97 +2,127 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const { secret } = require('../config/jwt_secret')
 
-// handle errors
-const handleErrors = (err) => {
-  console.log(err.message, err.code)
-  let errors = { email: '', password: '' }
+// Handle errors - funkce na error handling, mozna se tim budu inspirovat pozdeji 
+// const handleErrors = (err) => {
+//   console.log(err.message, err.code)
+//   let errors = { email: '', password: '' }
 
-  // TODO: jednotnej err pro mail a heslo z bezpecnostnich duvodu, vsak vis 
-  // incorrect email
-  if (err.message === 'wrong email' ) {
-    errors.email = 'users email not found'
-  }
-  // incorrect password
-  if (err.message === 'wrong password' ) {
-    errors.password = 'you have entered wrong password'
-  }
+//   // TODO: jednotnej err pro mail a heslo z bezpecnostnich duvodu, vsak vis 
+//   // incorrect email
+//   if (err.message === 'wrong email' ) {
+//     errors.email = 'users email not found'
+//   }
+//   // incorrect password
+//   if (err.message === 'wrong password' ) {
+//     errors.password = 'you have entered wrong password'
+//   }
 
-  // duplicate error code
-  if (err.code === 11000) {
-    errors.email = 'that email is already taken'
-    return errors
-  }
+//   // duplicate error code
+//   if (err.code === 11000) {
+//     errors.email = 'that email is already taken'
+//     return errors
+//   }
 
-  // validate errors
-  if (err.message.includes('user validation failed')){
-    // console.log(Object.values(err.errors))
-    Object.values(err.errors).forEach(({properties}) => {
-      // console.log(properties)
-      errors[properties.path] = properties.message
-    })
-    return errors
-  }
-}
+//   // validate errors
+//   if (err.message.includes('user validation failed')){
+//     // console.log(Object.values(err.errors))
+//     Object.values(err.errors).forEach(({properties}) => {
+//       // console.log(properties)
+//       errors[properties.path] = properties.message
+//     })
+//     return errors
+//   }
+// }
 
 // Create JWT
-const maxAge = 60 * 60 * 24 
+const maxAge = 60 * 60 * 24
 const createToken = (id) => {
   return jwt.sign({ id }, secret, {
     expiresIn: maxAge
   })
 }
 
-const signup_post = async (req, res) => {
+const sign_up_user = async (req, res) => {
   const { email, password } = req.body
-  // res.send(email)
-
+  // TODO: some validation?
+  if (!email || !password) {
+    res.status(404).json({ msg: 'enter email and password' })
+  }
   try {
     const user = await User.create({
-      email, 
+      email,
       password
     })
     const token = createToken(user._id)
-    // res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
-    res.cookie('jwt', token, {maxAge: maxAge * 1000})
-    res.status(201).json({ userID: user._id, email: user.email })
+
+    res.status(201).json({
+      token,
+      id: user._id,
+      email: user.email,
+    })
   } catch (err) {
-    const errors = handleErrors(err)
-    res.status(400).json({ errors })
-    // res.status(400).send('error')
+    res.status(400).json({ err })
   }
 }
 
-const login_post = async (req, res) => {
+const log_in_user = async (req, res) => {
   const { email, password } = req.body
-  console.log(email, password)
+  if (!email || !password) {
+    res.status(404).json({ msg: 'enter email and password' })
+  }
   try {
+    // In case of user is already logged in
+    // await jwt.verify(req.header('x-auth-token'), secret, async (err, decodedToken) => {
+    //   if (!err) {
+    //     res.status(200).json({ msg: 'You are already logged in' })
+    //   }
+    // })
     const user = await User.login(email, password)
-    const token = createToken(user._id)
-    // res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
-    res.cookie('jwt', token, {httpOnly: false, maxAge: maxAge * 1000})
-    res.status(200).json({userID: user._id, email: user.email})
+    let token
+    if (user) {
+      token = await createToken(user._id)
+    }
+
+    res.status(200).json({
+      token,
+      id: user._id,
+      email: user.email,
+    })
+
   } catch (err) {
-    const errors = handleErrors(err)
-    res.status(400).json({ errors })
+    res.status(400).json({ err: 'cant log in, invalid credentials' })
   }
 }
 
-const logout_get = (req, res) => {
-  // bacha kde pouzivam res a kde req s cookie
-  res.cookie('jwt', '', { maxAge: 1 })
-  console.log('logged out cons')
-
-  // res.redirect('/homepage')
-  res.status(200).json({user: 'logged out'})
+const get_user_on_app_load = async (req, res) => {
+  try {
+    console.log(req.user)
+    const userByToken = await User.findById(req.user.id)
+    console.log(userByToken)
+    console.log(userByToken._id)
+    res.status(200).json({
+      token: req.header('x-auth-token'),
+      id: userByToken._id,
+      email: userByToken.email,
+    })
+  } catch (err) {
+    res.status(400).json({
+      err: 'cant log in, invalid credentials',
+    })
+  }
 }
 
-const login_get = (req, res) => {
-  res.send('login_get')
+const log_out_user = async (req, res) => {
+  try {
+    res.status(200).json({ msg: 'user logged out' })
+  } catch (err) {
+    res.status(400).json({ msg: 'user log out error:', err })
+  }
 }
 
 module.exports = {
-  signup_post,
-  login_post,
-  logout_get,
-  login_get,
+  sign_up_user,
+  log_in_user,
+  log_out_user,
+  get_user_on_app_load,
 }

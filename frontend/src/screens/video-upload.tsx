@@ -8,18 +8,18 @@ const ProgressBar = styled(Flex)`
   transition: width 0.2s;
 `
 
-export default function VideoUpload({infoMsg, setInfoMsg}) {
+export default function VideoUpload() {
 
   const [files, setFile] = useState({
-    videoThumb: null,
-    videoFile: null,
+    videoThumb: undefined,
+    videoFile: undefined,
   })
   const [inputs, setInputs] = useState({
     videoTitle: '',
     videoDescription: '',
   })
 
-  const [uploadProgress, setUploadProgress] = useState({showProgress: false, percentage: 0})
+  const [uploadProgress, setUploadProgress] = useState({ showProgress: false, percentage: 0 })
 
   const videoThumbSelect = (e) => {
     setFile({ ...files, videoThumb: e.target.files[0] })
@@ -36,8 +36,8 @@ export default function VideoUpload({infoMsg, setInfoMsg}) {
   }
 
   const clearForm = () => {
-    setInputs({...inputs, videoTitle: '', videoDescription: '' })
-    setFile({ ...files, videoThumb: null, videoFile: null })
+    setInputs({ ...inputs, videoTitle: '', videoDescription: '' })
+    setFile({ ...files, videoThumb: undefined, videoFile: undefined })
   }
 
   const submitForm = async (e) => {
@@ -59,8 +59,8 @@ export default function VideoUpload({infoMsg, setInfoMsg}) {
         const percentage = Math.floor((progressEvent.loaded / progressEvent.total) * 100)
         setUploadProgress({ showProgress: true, percentage })
       }
-    }).then( (response) => {
-      setInfoMsg(response.data)
+    }).then((response) => {
+      // setInfoMsg(response.data)
     })
     clearForm()
   }
@@ -71,11 +71,11 @@ export default function VideoUpload({infoMsg, setInfoMsg}) {
         <Flex flexDirection='column'>
           <FormControl>
             <InputLabel>Video Title</InputLabel>
-            <Input type="text" name="videoTitle" id="videoTitle" placeholder='Title' onChange={inputChange} />
+            <Input type="text" name="videoTitle" id="videoTitle" placeholder='Title' value={inputs.videoTitle} onChange={inputChange} />
           </FormControl>
           <FormControl>
             <InputLabel>Video Description</InputLabel>
-            <Input type="text" name="videoDescription" id="videoDescription" placeholder='Description' onChange={inputChange} />
+            <Input type="text" name="videoDescription" id="videoDescription" placeholder='Description' value={inputs.videoDescription} onChange={inputChange} />
           </FormControl>
           {/* <Button
             variant="contained"
@@ -131,9 +131,10 @@ export default function VideoUpload({infoMsg, setInfoMsg}) {
           <div>{`${uploadProgress.percentage}%`}</div>
         </Flex>
       )}
-      {infoMsg && (
+      {/* {infoMsg && (
         <div>{infoMsg}</div>
-      )}
+      )} */}
+      <button onClick={clearForm}>clear</button>
     </div>
   )
 }

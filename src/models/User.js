@@ -17,13 +17,12 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Enter your password'],
     minlength: [6, 'Min password length is 6 chars'],
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
+  role: {
+    type: String,
+    required: true,
+    default: 'basic',
   }
-  // created: {
-  //   type : Date, default: Date.now
-  // }
+
 },
   // timestamps davam za schema objekt do config objektu, doda mi to datumy pro created a updated time
   { timestamps: true, }
@@ -53,18 +52,20 @@ userSchema.pre('save', async function (next) {
 })
 
 // Add Static method to login user
-userSchema.statics.login = async function(email, password){
-  // use this to refer user model
-  const user = await this.findOne({ email })
-  if (user) {
+userSchema.statics.login = async function (email, password) {
+  try {
+    // use this to refer user model
+    const user = await this.findOne({ email })
     // auth returns boolean
     const auth = await bcrypt.compare(password, user.password)
-    if (auth){
+    if (auth) {
       return user
+    } else {
+      throw Error('wrong email or password')
     }
-    throw Error('wrong password')
+  } catch (error) {
+    throw Error('login error, cant get user')
   }
-  throw Error('wrong email')
 }
 
 // tady to co davam jakou string 'user' tak z toho DB automaticky udela users collection jako pomnozny

@@ -4,13 +4,16 @@ import ReactDOM from 'react-dom';
 
 // import store from './redux/store'
 import App from './App';
+import GlobalState from './contexts/global/GlobalState';
 import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <Provider store={store}> */}
+    <GlobalState>
       <App />
+    </GlobalState>
     {/* </Provider> */}
   </React.StrictMode>,
   document.getElementById('root')

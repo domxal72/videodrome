@@ -1,0 +1,30 @@
+new line 
+new line 2 
+new line 3 
+Wed Jun 02 2021 11:01:07 GMT+0200 (Central European Summer Time)
+sdadssdadsahor
+ahor
+ahor
+ahor
+ahor
+ip: ::1, method: GET
+date: Wed Jun 02 2021 13:11:51 GMT+0200 (Central European Summer Time) ip: ::1, method: GET
+date: 3/5/3 13:38:31, ip: ::1, method: GET
+date: 2021 06 02, 1:48:00, ip: ::1, method: GET
+date: 2021/06/02, 1:48:19, ip: ::1, method: GET
+date: 2021/06/02, 01:48:54, ip: ::1, method: GET
+date: 2021/06/02, 01:51:32, ip: ::1, method: GET
+date: 2021/06/02, 02:11:59 pm, ip: ::1, method: GET
+date: 2021/06/02, 02:16:10 pm, ip: ::1, hostname: localhost method: GET
+[object Object]
+date: 2021/06/02, 02:19:06 pm, ip: ::1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/02, 02:22:26 pm, ip: ::1, hostname: localhost method: GET baseUrl: /video
+
+    loc: false
+  date: 2021/06/02, 05:11:09 pm, ip: ::1, hostname: localhost method: GET baseUrl: /video
+
+    loc: false
+  date: 2021/06/02, 05:15:43 pm, ip: ::1, hostname: localhost method: GET baseUrl: /video
+
+    loc: false
+  

@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser')
 const { PORT } = require('./src/config/env')
 const videoRoutes = require('./src/routes/videoRoutes')
 const authRoutes = require('./src/routes/authRoutes')
-const { requireAuth, checkUser } = require('./src/middleware/authMW')
+const { auth, checkUser } = require('./src/middleware/auth')
 const Video = require('./src/models/Video')
 
 app = express()
@@ -25,7 +25,7 @@ const dbName = 'videodrome_db'
 const userName = 'dom'
 const userPass = 'tetrev236'
 const dbURI = `mongodb+srv://${userName}:${userPass}@videodrome-cluster.j65vd.mongodb.net/${dbName}?retryWrites=true&w=majority`;
-mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // static files for react frontend build
 app.use(express.static(path.join(__dirname, '/frontend/build')))
@@ -53,15 +53,19 @@ app.get('/', (req, res) => {
   res.send('requesting backup')
 })
 
-app.get('/protected', requireAuth, (req, res) => {
-  res.send('protected')
+app.post('/protected', checkUser, (req, res) => {
+  try {
+    res.status(200).send('protected route accessed!')
+  } catch (err) {
+    res.status(500).send('protected route catch err')
+  }
 })
 
 app.get('/test', (req, res) => {
-  res.send({crush: 'your enemies'})
+  res.send({ crush: 'your enemies' })
 })
 
 app.get('/denied', (req, res) => {
-  res.send({access: 'denied'})
+  res.send({ access: 'denied' })
 })
 

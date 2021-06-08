@@ -1,7 +1,9 @@
 const fs = require('fs')
 const path = require('path')
-const Video = require('../models/Video')
 const sharp = require('sharp')
+
+const Video = require('../models/Video')
+const logger = require('../log/logger')
 
 const video_controller = (req, res) => {
   const videoPath = path.join(__dirname, '../assets/videos/castle.mp4')
@@ -59,7 +61,9 @@ const get_single_video = async (req, res) => {
 
 const fetch_test = async (req, res) => {
   try {
-    
+    console.log(req.header('Accept-Language'))
+    console.log(req.headers)
+    logger(req, res)
     console.log('I am string')
     res.status(200).send('I am string')
     // res.status(200).send({obj: 'resp'})
@@ -81,7 +85,7 @@ const video_upload = async (req, res) => {
 
     await videoFile.mv(path.join(__dirname, '../assets/videos/', videoFile.name))
     // Move image to temporary location for resize
-    await videoThumb.mv(path.join(__dirname, '../assets/img/', 'temp' ))
+    await videoThumb.mv(path.join(__dirname, '../assets/temp_img/', videoThumb.name ))
 
     // Staci dat Model.create() pro ulozeni do DB
     await Video.create({
@@ -91,13 +95,10 @@ const video_upload = async (req, res) => {
       videoSrc: '/videos/' + videoFile.name,
     })
 
-    // Resize image from temporary and save it to named address
-    await sharp(path.join(__dirname, '../assets/img/', 'temp' ))
+    // Resize uploaded image from temporary location and save it to named address
+    await sharp(path.join(__dirname, '../assets/temp_img/', videoThumb.name ))
       .resize({width: 500, height: 300})
       .toFile(path.join(__dirname, '../assets/img/', videoThumb.name ))
-
-    // Remove temporary file 
-    fs.unlink(path.join(__dirname, '../assets/img/', 'temp' ), () => {console.log(`successfully deleted ${path.join(__dirname, '../assets/img/', 'temp' )}`);});
 
     res.send('video uploaded successfully')
   } else {

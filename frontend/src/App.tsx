@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 
 import { useSelector, useDispatch } from 'react-redux'
 import store from '../src/redux/store'
+import { GlobalContext } from '../src/contexts/global/GlobalState'
 
 import Header from './parts/header';
 import { Flex, FlexOut } from './ui/general/flex';
@@ -20,74 +21,46 @@ import VideoUpload from './screens/video-upload';
 import Page404 from './screens/page-404';
 import SingleVideo from './screens/single-video';
 import Sidebar from './parts/sidebar';
-// import { GlobalContext } from './contexts/global/GlobalContext';
-import GlobalState from './contexts/global/GlobalState';
+import TooltipScreen from './screens/TooltipScreen';
 
-const selectVideos = state => state.videos
+// const selectVideos = state => state.videos
 
 function App() {
 
-  console.log(Cookies.get('jwt'))
-  const initialState = { 
-    isLoggedIn: Cookies.get('jwt'),
-    user: {},
-    videoList: [],
-    video: {},
-    infoMsg: null,
-    test: undefined,
-  }
 
-  const [state, setState] = useState(initialState)
+
+  const { getUserOnAppLoad } = useContext(GlobalContext)
+
+  useEffect(() => {
+    getUserOnAppLoad()
+  }, [])
+
+
   // const dispatch = useDispatch()
-
-  const logInUser = (user) => {
-    setState({...state, isLoggedIn: true, user })
-    // redirect to dashboard after login
-    window.location.assign('/')
-  } 
-
-  const logOutUser = () => {
-    setState({...state, isLoggedIn: false })
-  }
 
   const getVideoList = async () => {
     const res = await fetch('/video/list')
     const data = await res.json()
 
     console.log(data)
-    setState({...state, videoList: data })
-  } 
+    // setState({ ...state, videoList: data })
+  }
 
   const getSingleVideo = async (id, player) => {
     const res = await fetch(`/video/${id}`)
     const data = await res.json()
 
-    console.log(data)
-    await setState({...state, video: data })
-    console.log(state.video)
-    player?.load()
+    // console.log(data)
+    // await setState({ ...state, video: data })
+    // console.log(state.video)
+    // player?.load()
 
   }
 
   const clearSingleVideo = async () => {
-    setState({...state, video: null })
-    console.log(state.video)
+    // setState({ ...state, video: null })
+    // console.log(state.video)
   }
-
-  const clearInfoMsg = () => {
-    setState({...state, infoMsg: null })
-  }
-
-  const setInfoMsg = (infoMsg) => {
-    setState({...state, infoMsg })
-    setTimeout(() => {
-      clearInfoMsg()
-    }, 2000);
-  }
-
-  console.log('Initial state: ', store.getState())
-  store.dispatch({ type: 'user/changeName', payload: 'Thulsa' })
-  console.log('Initial state: ', store.getState())
 
   // const videos = useSelector(selectVideos)
   // useSelector(state => state)
@@ -98,39 +71,38 @@ function App() {
   // }
 
   return (
-    // <GlobalContext.Provider value={{test: 'sada'}}>
-    <GlobalState>
-      <Router>
-        <Main>
-          <Header state={state} logOutUser={logOutUser} />
-          <Flex pt={100} flexDirection='column' flex={1}>
-            <Switch>
-              <Route exact path="/">
-                {!state.isLoggedIn ? <Redirect to="/home" /> : <Dashboard state={state} getVideoList={getVideoList} />}
-              </Route>
-              <Route exact path="/home">
-                <Homepage logInUser={logInUser} />
-              </Route>
-              <Route exact path="/signup">
-                <SignUp logInUser={logInUser} />
-              </Route>
-              <Route exact path="/videoupload">
-                <VideoUpload infoMsg={state.infoMsg} setInfoMsg={setInfoMsg} />
-              </Route>
-              <Route exact path="/video/:id">
-                <SingleVideo state={state} getSingleVideo={getSingleVideo} clearSingleVideo={clearSingleVideo} />
-              </Route>
-              <Route path="/:path">
-                <Page404 />
-              </Route>
-            </Switch>
-          </Flex>
-          <Sidebar />
-          {/* <button onClick={addVideo}>add video</button> */}
-        </Main>
-      </Router>
-    </GlobalState>
-    // </GlobalContext.Provider>
+    <Router>
+      <Main>
+        <Header />
+        <Flex pt={100} flexDirection='column' flex={1}>
+          <Switch>
+            <Route exact path="/">
+              <Dashboard getVideoList={getVideoList} />
+            </Route>
+            <Route exact path="/home">
+              <Homepage />
+            </Route>
+            <Route exact path="/tooltip">
+              <TooltipScreen />
+            </Route>
+            <Route exact path="/signup">
+              <SignUp />
+            </Route>
+            <Route exact path="/videoupload">
+              <VideoUpload />
+            </Route>
+            <Route exact path="/video/:id">
+              <SingleVideo getSingleVideo={getSingleVideo} clearSingleVideo={clearSingleVideo} />
+            </Route>
+            <Route path="/:path">
+              <Page404 />
+            </Route>
+          </Switch>
+        </Flex>
+        <Sidebar />
+        {/* <button onClick={addVideo}>add video</button> */}
+      </Main>
+    </Router>
   );
 }
 
