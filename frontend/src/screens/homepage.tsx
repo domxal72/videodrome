@@ -1,6 +1,6 @@
 import React from 'react'
 import { Typography } from '@material-ui/core';
-import LogIn from '../parts/log-in'
+import LogIn from '../parts/LogIn'
 import { Flex } from '../ui/general/flex'
 
 export default function Homepage() {

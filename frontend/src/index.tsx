@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 // import store from './redux/store'
 import App from './App';
 import GlobalState from './contexts/global/GlobalState';
+import VideoState from './contexts/video/VideoState';
 import reportWebVitals from './reportWebVitals';
 
 
@@ -12,7 +13,9 @@ ReactDOM.render(
   <React.StrictMode>
     {/* <Provider store={store}> */}
     <GlobalState>
-      <App />
+      <VideoState>
+        <App />
+      </VideoState>
     </GlobalState>
     {/* </Provider> */}
   </React.StrictMode>,

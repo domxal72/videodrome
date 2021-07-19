@@ -1,7 +1,7 @@
 import React from 'react'
 import { sizes } from '../ui/layout/sizes'
 
-export default function Main({children}) {
+export default function Main({ children }) {
   return (
     <div style={mainStyle}>
       {children}
@@ -12,6 +12,6 @@ export default function Main({children}) {
 const mainStyle = {
   margin: '0 auto',
   display: 'flex',
-  width: '100%', 
-  maxWidth: sizes.pageWidth, 
+  width: '100%',
+  maxWidth: sizes.pageWidth,
 }

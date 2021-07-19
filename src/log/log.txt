@@ -27,4 +27,131 @@ date: 2021/06/02, 02:22:26 pm, ip: ::1, hostname: localhost method: GET baseUrl:
   date: 2021/06/02, 05:15:43 pm, ip: ::1, hostname: localhost method: GET baseUrl: /video
 
     loc: false
-  
+  date: 2021/06/13, 03:56:14 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+
+    loc: false
+  date: 2021/06/13, 03:56:14 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+
+    loc: false
+  date: 2021/06/13, 03:56:18 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+
+    loc: false
+  date: 2021/06/13, 04:07:45 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:08:04 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:08:08 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:12:02 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:12:12 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:12:13 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:12:16 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:12:17 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:12:20 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:12:20 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/13, 04:12:22 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:12:23 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:12:26 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:12:27 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:13:31 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:13:35 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:13:37 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:13:39 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:13:40 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:13:40 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/13, 04:13:43 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:13:46 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:13:47 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:13:49 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:15:57 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:15:59 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:16:02 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:16:03 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:16:04 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:16:41 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:16:44 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:16:44 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/13, 04:16:53 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:17:00 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:17:56 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:18:01 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:18:03 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:18:04 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:21:12 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:21:12 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/13, 04:21:13 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:21:17 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:26:53 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:26:55 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:12 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:16 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:17 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:20 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:21 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:23 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:42 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:44 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:45 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:45 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/13, 04:27:47 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:48 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:49 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:27:51 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:51:12 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: 
+date: 2021/06/13, 04:51:12 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:51:12 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: 
+date: 2021/06/13, 04:51:12 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/13, 04:51:26 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: 
+date: 2021/06/13, 04:51:26 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 04:51:26 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: 
+date: 2021/06/13, 04:51:26 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/13, 04:51:37 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: 
+date: 2021/06/13, 04:51:37 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: 
+date: 2021/06/13, 04:52:03 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: 
+date: 2021/06/13, 04:52:03 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: 
+date: 2021/06/13, 05:16:27 pm, ip: ::1, hostname: localhost method: GET baseUrl: 
+date: 2021/06/13, 06:47:04 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/13, 06:47:55 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 06:53:13 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: POST baseUrl: /video
+date: 2021/06/13, 06:54:45 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/13, 06:57:38 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/13, 06:59:18 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /video
+date: 2021/06/13, 06:59:46 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/13, 07:01:42 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 08:34:21 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 08:43:02 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 08:43:22 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 08:44:46 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 08:45:02 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 08:45:09 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 09:10:34 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:00:28 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:01:49 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:02:02 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:02:06 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:25:02 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:25:29 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:28:22 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:29:13 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:31:57 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:32:00 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:32:04 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:32:51 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:34:25 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:34:34 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:51:30 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:56:36 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/14, 11:59:17 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/15, 09:45:22 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/06/15, 09:47:15 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 11:27:46 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 11:32:08 am, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 12:15:44 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 12:20:02 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 12:30:29 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 12:33:48 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 12:42:35 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 12:43:14 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 12:47:12 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 01:46:15 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 01:49:13 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 04:50:10 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 05:55:09 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth
+date: 2021/07/19, 06:30:59 pm, ip: ::ffff:127.0.0.1, hostname: localhost method: GET baseUrl: /auth

@@ -44,7 +44,7 @@ app.use(cookieParser())
 // file upload middleware
 app.use(fileUpload())
 
-app.get('*', checkUser) // check user on every request
+// app.use(checkUser) // check user on every request
 
 app.use('/video', videoRoutes)
 app.use('/auth', authRoutes)

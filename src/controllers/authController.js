@@ -59,6 +59,7 @@ const sign_up_user = async (req, res) => {
       token,
       id: user._id,
       email: user.email,
+      role: userByToken.role,
     })
   } catch (err) {
     res.status(400).json({ err })
@@ -87,6 +88,7 @@ const log_in_user = async (req, res) => {
       token,
       id: user._id,
       email: user.email,
+      role: userByToken.role,
     })
 
   } catch (err) {
@@ -98,12 +100,11 @@ const get_user_on_app_load = async (req, res) => {
   try {
     console.log(req.user)
     const userByToken = await User.findById(req.user.id)
-    console.log(userByToken)
-    console.log(userByToken._id)
     res.status(200).json({
       token: req.header('x-auth-token'),
       id: userByToken._id,
       email: userByToken.email,
+      role: userByToken.role,
     })
   } catch (err) {
     res.status(400).json({

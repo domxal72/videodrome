@@ -4,7 +4,7 @@ import { clearForm } from '../utils/helpers'
 
 export default function SignUp() {
 
-  const { logInUser, logOutUser, user } = useContext(GlobalContext)
+  const { logInUser } = useContext(GlobalContext)
 
   const [form, setForm] = useState({
     email: '',

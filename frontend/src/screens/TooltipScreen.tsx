@@ -16,14 +16,13 @@ const Cell = ({ item, showTooltip, hideTooltip, moveTooltip }) => {
   return (
     <li
       key={item.id}
-      style={{padding: '15px', boxSizing: 'border-box', height: '50px', border: '1px solid teal'}}
-      onMouseEnter={(e) => {showTooltip(item, e)}}
-      // onMouseLeave={hideTooltip}
-      onMouseLeave={(e) => {hideTooltip(e)}}
-      onMouseMove={(e) => {moveTooltip(e)}}
+      style={{ padding: '15px', boxSizing: 'border-box', height: '50px', border: '1px solid teal' }}
+      onMouseEnter={(e) => { showTooltip(item, e) }}
+      onMouseLeave={(e) => { hideTooltip(e) }}
+      onMouseMove={(e) => { moveTooltip(e) }}
     >
-      <div style={{display: 'inline-block', verticalAlign: 'middle'}}>{item.id}</div>
-      <div style={{display: 'inline-block', verticalAlign: 'middle'}}>{item.name}</div>
+      <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>{item.id}</div>
+      <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>{item.name}</div>
     </li>
   )
 }
@@ -31,11 +30,11 @@ const Cell = ({ item, showTooltip, hideTooltip, moveTooltip }) => {
 const Tooltip = ({ position }) => {
   return (
     <div style={{
-        display: position.display,
-        position: 'fixed',
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-      }}
+      display: position.display,
+      position: 'fixed',
+      left: `${position.x}px`,
+      top: `${position.y}px`,
+    }}
     >
       {position.text}
     </div>
@@ -52,10 +51,10 @@ const initialState = {
 export default function TooltipScreen() {
 
   const data = [
-    {id: 1, name: 'prvni vyhrani'},
-    {id: 2, name: 'druhy vyhrani'},
-    {id: 3, name: 'tretak vyhrani'},
-    {id: 4, name: 'ctverka vyhrani'},
+    { id: 1, name: 'prvni vyhrani' },
+    { id: 2, name: 'druhy vyhrani' },
+    { id: 3, name: 'tretak vyhrani' },
+    { id: 4, name: 'ctverka vyhrani' },
   ]
 
   const [position, setPosition] = useState(initialState)
@@ -88,7 +87,7 @@ export default function TooltipScreen() {
   }
 
   return (
-    <div style={{position: 'relative'}}>
+    <div style={{ position: 'relative' }}>
       <Table data={data} showTooltip={showTooltip} hideTooltip={hideTooltip} moveTooltip={moveTooltip} />
       <Tooltip position={position} />
     </div>
