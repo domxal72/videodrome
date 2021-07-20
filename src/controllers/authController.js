@@ -2,38 +2,6 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const { secret } = require('../config/jwt_secret')
 
-// Handle errors - funkce na error handling, mozna se tim budu inspirovat pozdeji 
-// const handleErrors = (err) => {
-//   console.log(err.message, err.code)
-//   let errors = { email: '', password: '' }
-
-//   // TODO: jednotnej err pro mail a heslo z bezpecnostnich duvodu, vsak vis 
-//   // incorrect email
-//   if (err.message === 'wrong email' ) {
-//     errors.email = 'users email not found'
-//   }
-//   // incorrect password
-//   if (err.message === 'wrong password' ) {
-//     errors.password = 'you have entered wrong password'
-//   }
-
-//   // duplicate error code
-//   if (err.code === 11000) {
-//     errors.email = 'that email is already taken'
-//     return errors
-//   }
-
-//   // validate errors
-//   if (err.message.includes('user validation failed')){
-//     // console.log(Object.values(err.errors))
-//     Object.values(err.errors).forEach(({properties}) => {
-//       // console.log(properties)
-//       errors[properties.path] = properties.message
-//     })
-//     return errors
-//   }
-// }
-
 // Create JWT
 const maxAge = 60 * 60 * 24
 const createToken = (id) => {
@@ -44,7 +12,7 @@ const createToken = (id) => {
 
 const sign_up_user = async (req, res) => {
   const { email, password } = req.body
-  // TODO: some validation?
+  // TODO: validation?
   if (!email || !password) {
     res.status(404).json({ msg: 'enter email and password' })
   }
@@ -88,7 +56,7 @@ const log_in_user = async (req, res) => {
       token,
       id: user._id,
       email: user.email,
-      role: userByToken.role,
+      role: user.role,
     })
 
   } catch (err) {

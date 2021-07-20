@@ -1,4 +1,4 @@
-import React, { createContext, MouseEventHandler, useReducer } from 'react'
+import React, { createContext, useReducer } from 'react'
 import GlobalReducer,
 {
   GET_USER_ON_APP_LOAD,

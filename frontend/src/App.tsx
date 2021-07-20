@@ -39,9 +39,9 @@ function App() {
         <Header />
         <Flex pt={100} flexDirection='column' flex={1}>
           <Switch>
-            <Route exact path="/">
+            <ProtectedRoute exact path="/">
               <Dashboard />
-            </Route>
+            </ProtectedRoute>
             <Route exact path="/home">
               <Homepage />
             </Route>

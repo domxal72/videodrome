@@ -1,1 +1,1 @@
-module.exports.secret = 'tohle je jwt secret'
+module.exports.secret = 'jwt secret text'

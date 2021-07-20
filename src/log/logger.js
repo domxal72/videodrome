@@ -1,4 +1,3 @@
-// const { appendFile } = require('fs')
 const { appendFile } = require('fs')
 const { join } = require('path')
 
@@ -10,7 +9,6 @@ function logger(req, res) {
   // const { headersSent } = res
 
   const logFilePath = join(__dirname, 'log.txt')
-  const date = new Date()
   moment().locale()
   const dateFormat = moment().format('YYYY/MM/DD, hh:mm:ss a')
   const data = `date: ${dateFormat}, ip: ${ip}, hostname: ${hostname} method: ${method} baseUrl: ${baseUrl}\n`

@@ -30,7 +30,7 @@ export default function LogIn() {
       body: JSON.stringify(form),
       headers: {
         'Content-Type': 'application/json',
-        // 'x-auth-token': localStorage.getItem('token'),
+        'x-auth-token': localStorage.getItem('token'),
       },
     }
     try {
